@@ -23,10 +23,10 @@ class MainViewModel(private val apiService: APIService): ViewModel() {
         loadISSPasses(51.5044812, -0.0586698)
     }*/
 
-    fun loadISSPasses(latitude: Double, longitude: Double):LiveData<APIResponse>{
+    fun loadISSPasses(latitude: Double, longitude: Double, altitude: Int, passes: Int):LiveData<APIResponse>{
         val response = MutableLiveData<APIResponse>()
 
-        apiService.getISSPasses(latitude, longitude, ALTITUDE, NUM_OF_PASSES)
+        apiService.getISSPasses(latitude, longitude, altitude, passes)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : SingleObserver<APIResponse>{
