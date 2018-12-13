@@ -68,16 +68,18 @@ class MainActivity : AppCompatActivity() {
                             for (i in 0 until it?.response!!.size)
                             {
                                 issPassDataList.add(ISSPassData(it.response[i].duration.toString(), it.response[i].risetime.toString()))
-                                Log.d(TAG, "Duration: ${it.response[i].duration}")
+                                //Log.d(TAG, "Duration: ${issPassDataList[i].duration}")
                             }
+
+                            adapter = ISSPassAdapter(issPassDataList)
+                            binding.recyclerView.layoutManager = layoutManager
+                            binding.recyclerView.adapter = adapter
                         })
 
 
                     }
                 }
-        adapter = ISSPassAdapter(issPassDataList)
-        binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = adapter
+
     }
 
     private fun init(){
